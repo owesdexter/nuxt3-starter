@@ -1,0 +1,39 @@
+// assets/scss/app.scss
+
+/** 1. 引入 functions，才能操控 color, svg, calc... */
+// @import "bootstrap/kscss/functions";
+
+/** 2. 自訂變數置於 bootstrap variables 前，覆蓋 bootstrap 變數 */
+@import "./color";
+@import "./variables";
+@import 'bootstrap/scss/bootstrap';
+/** 3. 引入 variables, mixins, root */
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import 'bootstrap/scss/maps';
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/root";
+
+/** 4. 引入 utils */
+// @import "~bootstrap/scss/utilities";
+// 透過 map-merge 合併 bootstrap utils，詳細定義方式參考 官方文件
+
+/** 5. 自訂、擴充、調整 utils */
+@import "./utils";
+
+/** 6. 引入需要的 bootstrap components */
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/helpers";
+/** ... */
+
+/** 7. 使用 utils 需引入 utils api（將 sass map 轉換為 utility classes） */
+// @import "bootstrap/scss/utils/api";
+
+/** 8. 客製樣式置於最後，覆蓋前面的樣式 */
+@import "./custom";

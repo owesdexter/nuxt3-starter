@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <p>Default layout</p>
+  <div class="container">
+    <!-- <p>Default layout</p> -->
     <slot />
   </div>
 </template>

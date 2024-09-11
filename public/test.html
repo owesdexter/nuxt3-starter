@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Cookie Example</title>
+    <script>
+        // 設置 cookie 的函數
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        // 讀取 cookie 的函數
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        // 顯示當前 cookie 的值
+        function displayCookie() {
+            const cookieName = 'myCookie';
+            const cookieValue = getCookie(cookieName);
+            document.getElementById('cookieDisplay').textContent = 
+                cookieValue ? `Cookie Value: ${cookieValue}` : 'No cookie found';
+        }
+
+        // 設置 cookie 並更新顯示
+        function setAndDisplayCookie() {
+            const name = document.getElementById('cookieName').value;
+            const value = document.getElementById('cookieValue').value;
+            const days = parseInt(document.getElementById('cookieDays').value, 10);
+            setCookie(name, value, days);
+            displayCookie();
+        }
+
+        // 在頁面加載時顯示 cookie
+        window.onload = function() {
+            displayCookie();
+        }
+    </script>
+</head>
+<body>
+    <h1>Cookie Management</h1>
+
+    <div>
+        <h2>Set Cookie</h2>
+        <form onsubmit="event.preventDefault(); setAndDisplayCookie();">
+            <label for="cookieName">Cookie Name:</label>
+            <input type="text" id="cookieName" required>
+            <br>
+            <label for="cookieValue">Cookie Value:</label>
+            <input type="text" id="cookieValue" required>
+            <br>
+            <label for="cookieDays">Days Until Expiration:</label>
+            <input type="number" id="cookieDays" value="1" required>
+            <br>
+            <input type="submit" value="Set Cookie">
+        </form>
+    </div>
+
+    <div>
+        <h2>Current Cookie Value</h2>
+        <p id="cookieDisplay">No cookie found</p>
+    </div>
+</body>
+</html>
